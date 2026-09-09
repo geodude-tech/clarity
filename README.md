@@ -26,6 +26,10 @@ pnpm dlx skills add addyosmani/clarity
 Plugin commands are namespaced, so the skill answers to `/clarity:clarity` and the wrappers to
 `/clarity:clarity-interview`, `/clarity:clarity-rewrite`, and `/clarity:clarity-review`.
 
+The same marketplace works in the Claude desktop app chat: open Settings, choose Customize and then
+Plugins, select Add, then Add marketplace, and enter `addyosmani/clarity`. Chat has no way to install
+a bare skill from GitHub; the plugin is what makes it reachable there.
+
 > **SSH errors?** The marketplace clones over SSH. If you have no SSH key on GitHub, add the
 > marketplace with the HTTPS URL instead: `/plugin marketplace add https://github.com/addyosmani/clarity.git`
 
