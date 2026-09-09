@@ -15,6 +15,7 @@ Do not use Clarity as a fact checker, plagiarism checker, authorship detector, o
 
 ```text
 npx skills add addyosmani/clarity
+Claude Code plugin: /plugin marketplace add addyosmani/clarity, then /plugin install clarity@addy-clarity
 Claude Code: /clarity interview <topic>
 Claude Code: /clarity rewrite <file>
 Claude Code: /clarity review <file>

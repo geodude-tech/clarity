@@ -18,7 +18,11 @@ RUNTIME_FILES = [
     ROOT / "references" / "medium.md",
     ROOT / "references" / "review.md",
 ]
-REQUIRED_FILES = RUNTIME_FILES + [
+PLUGIN_MANIFESTS = [
+    ROOT / ".claude-plugin" / "plugin.json",
+    ROOT / ".claude-plugin" / "marketplace.json",
+]
+REQUIRED_FILES = RUNTIME_FILES + PLUGIN_MANIFESTS + [
     ROOT / "commands" / "clarity-interview.md",
     ROOT / "commands" / "clarity-rewrite.md",
     ROOT / "commands" / "clarity-review.md",
@@ -89,6 +93,23 @@ def main() -> int:
         fail("SKILL.md metadata.version is missing or not semantic", failures)
     else:
         passed("SKILL.md frontmatter includes name and semantic version")
+
+    version_match = re.search(r'^\s+version:\s*["\'](\d+\.\d+\.\d+)["\']\s*$', skill, re.M)
+    skill_version = version_match.group(1) if version_match else None
+    mismatched = []
+    for path in PLUGIN_MANIFESTS:
+        try:
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            fail(f"{path.relative_to(ROOT)} is invalid: {exc}", failures)
+            continue
+        version = manifest.get("version") or manifest.get("plugins", [{}])[0].get("version")
+        if version != skill_version:
+            mismatched.append(f"{path.relative_to(ROOT)} -> {version}")
+    if mismatched:
+        fail(f"plugin manifest versions differ from SKILL.md {skill_version}: {', '.join(mismatched)}", failures)
+    else:
+        passed(f"plugin manifests use version {skill_version}")
 
     searchable = [ROOT / "SKILL.md", ROOT / "README.md", *ROOT.glob("commands/*.md")]
     retired_hits = []

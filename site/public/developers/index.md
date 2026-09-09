@@ -8,6 +8,13 @@ Clarity is an open-source Agent Skill and browser writing editor created and mai
 npx skills add addyosmani/clarity
 ```
 
+Claude Code can also install it as a plugin:
+
+```text
+/plugin marketplace add addyosmani/clarity
+/plugin install clarity@addy-clarity
+```
+
 The installed package exposes `SKILL.md`, optional command wrappers, editing and interview references, evaluation cases, and diagnostic scripts. Start with `SKILL.md`; it routes agents to the smallest relevant reference.
 
 ## Interfaces

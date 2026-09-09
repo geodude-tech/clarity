@@ -24,3 +24,17 @@ jobs:
         working-directory: site
       - run: npm run build
         working-directory: site
+
+  plugin:
+    name: Validate and install Claude Code plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin validate . --strict
+      - run: git config --global url."https://github.com/".insteadOf "git@github.com:"
+      - run: claude plugin marketplace add ./
+      - run: claude plugin install clarity@addy-clarity --scope user

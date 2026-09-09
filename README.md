@@ -16,6 +16,19 @@ npx skills add addyosmani/clarity
 pnpm dlx skills add addyosmani/clarity
 ```
 
+##### Claude Code plugin
+
+```
+/plugin marketplace add addyosmani/clarity
+/plugin install clarity@addy-clarity
+```
+
+Plugin commands are namespaced, so the skill answers to `/clarity:clarity` and the wrappers to
+`/clarity:clarity-interview`, `/clarity:clarity-rewrite`, and `/clarity:clarity-review`.
+
+> **SSH errors?** The marketplace clones over SSH. If you have no SSH key on GitHub, add the
+> marketplace with the HTTPS URL instead: `/plugin marketplace add https://github.com/addyosmani/clarity.git`
+
 Then pick a mode:
 
 ```txt

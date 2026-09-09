@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "addy-clarity",
+  "description": "Clarity: draft, rewrite, and review prose with a coding agent.",
+  "owner": { "name": "Addy Osmani", "url": "https://github.com/addyosmani" },
+  "plugins": [
+    {
+      "name": "clarity",
+      "version": "0.2.1",
+      "source": { "source": "github", "repo": "addyosmani/clarity" },
+      "description": "Draft, rewrite, or review reader-facing prose so it is specific, useful, and recognizably the author's.",
+      "homepage": "https://github.com/addyosmani/clarity",
+      "license": "MIT",
+      "keywords": ["writing", "prose", "editing", "review"]
+    }
+  ]
+}
